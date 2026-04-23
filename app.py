@@ -663,6 +663,15 @@ def cargar_logo():
     
     return None, None
 
+def obtener_avatar_bot():
+    """Retorna el avatar del bot como base64 o emoji de fallback"""
+    rutas = ["images/avatar_bot.png", "images/avatar_bot.jpg"]
+    for ruta in rutas:
+        if os.path.exists(ruta):
+            with open(ruta, "rb") as f:
+                return f.read()
+    return "📚"  # fallback si no hay imagen
+
 def mostrar_titulo_con_logo():
     """Muestra el título con el logo integrado"""
     ruta_logo, img = cargar_logo()
@@ -1093,7 +1102,7 @@ def busqueda_exhaustiva(termino, df):
     resultados.sort(key=lambda x: x['puntaje'], reverse=True)
     return resultados
 
-def mostrar_resultados_paginados(resultados, items_por_pagina=6):
+def mostrar_resultados_paginados(resultados, items_por_pagina=6, df=None):
     """Muestra resultados con paginación"""
     if not resultados:
         return
@@ -1116,18 +1125,26 @@ def mostrar_resultados_paginados(resultados, items_por_pagina=6):
     for i, r in enumerate(resultados[inicio:fin]):
         with cols[i % 2]:
             datos = r['datos']
+            total_ej, disp_ej = obtener_disponibilidad(str(datos['Titulo']), df)
+            if df is not None and total_ej > 0:
+                color_disp = "#00ff9d" if disp_ej > 0 else "#ff4444"
+                texto_disp = f"{disp_ej}/{total_ej} disponibles" if disp_ej > 0 else "Sin ejemplares disponibles"
+            else:
+                color_disp = "#00ff9d"
+                texto_disp = f"{datos['Ejemplares']} ejemplar(es)"
+
             st.markdown(f"""
             <div style="
                 background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
                 padding: 1rem;
                 border-radius: 12px;
                 margin: 0.5rem 0;
-                border-left: 4px solid #00ff9d;
+                border-left: 4px solid {color_disp};
                 transition: transform 0.2s ease;
             ">
                 <strong style="font-size: 1rem; color: #00ff9d;">📖 {datos['Titulo']}</strong><br>
                 <span style="color: #aaa;">✍️ {datos['Autor']} ({datos['Año']})</span><br>
-                <span style="color: #00ff9d;">📊 {datos['Ejemplares']} ejemplar(es)</span><br>
+                <span style="color: {color_disp};">📊 {texto_disp}</span><br>
                 <span style="color: #888; font-size: 0.8rem;">🏷️ {datos['Temas']}</span>
             </div>
             """, unsafe_allow_html=True)
@@ -1227,21 +1244,25 @@ def obtener_respuesta_groq(consulta, resultados, df, historial=None, libros_vist
 
         # ── MODO CATÁLOGO+GENERAL (está en la BD y el usuario pregunta más) ──
         elif modo == "catalogo_general":
-            libros_lista = []
+            # Calcular disponibilidad para cada libro encontrado
+            info_disponibilidad = []
             for r in resultados:
                 datos = r['datos']
-                libros_lista.append(
-                    f"• {datos['Titulo']} - Autor: {datos['Autor']} ({datos['Año']}) "
-                    f"- {datos['Ejemplares']} ejemplares - Tema: {datos['Temas']}"
-                )
+                titulo = str(datos['Titulo'])
+                reservas_activas = cargar_reservas()
+                activas = sum(1 for res in reservas_activas 
+                             if normalizar(res['titulo']) == normalizar(titulo) 
+                             and res['estado'] in ['pendiente', 'entregado'])
+                total = int(datos['Ejemplares'])
+                disp = max(0, total - activas)
+                info_disponibilidad.append(f"• {titulo}: {disp}/{total} disponibles")
+            
             system_content = (
                 "Sos Biblio, un bibliotecario amigable. "
                 "El usuario pregunta sobre un libro que SÍ está en el catálogo de esta biblioteca. "
-                "Además de indicar que está disponible, usá tu conocimiento general para enriquecer "
-                "la respuesta: de qué trata, por qué es interesante, a quién le puede gustar, etc. "
-                "SIEMPRE mencioná que el libro está disponible en la biblioteca.\n\n"
-                f"LIBRO(S) EN EL CATÁLOGO:\n{chr(10).join(libros_lista)}"
-                + ("\n\nLIBROS MENCIONADOS ANTES:\n" + "\n".join(libros_vistos) if libros_vistos else "")
+                "IMPORTANTE: Informá la disponibilidad real. Si hay 0 disponibles, avisá claramente "
+                "que no hay ejemplares en este momento aunque el libro existe en el catálogo.\n\n"
+                f"DISPONIBILIDAD ACTUAL:\n{chr(10).join(info_disponibilidad)}\n\n"
             )
 
         # ── MODO BÚSQUEDA ESTRICTO (resultados en la BD, consulta directa) ──
@@ -1305,8 +1326,215 @@ def es_mensaje_conversacional(texto):
     texto_norm = normalizar(texto)
     saludos = ['hola', 'buenas', 'buen dia', 'buenas tardes', 'buenas noches',
                'hi', 'hello', 'hey', 'como estas', 'que tal', 'gracias',
-               'muchas gracias', 'ok', 'okey', 'perfecto', 'genial', 'bien']
+               'muchas gracias', 'ok', 'okey', 'perfecto', 'genial', 'bien',
+               'adios', 'chau', 'hasta luego', 'nos vemos']
     return any(texto_norm.strip() == s or texto_norm.strip().startswith(s + ' ') for s in saludos)
+
+def es_consulta_sobre_libros(texto):
+    """Verifica que la consulta sea sobre libros, autores o lectura"""
+    texto_norm = normalizar(texto)
+    temas_validos = [
+        'libro', 'autor', 'novela', 'cuento', 'poema', 'poesia', 'literatura',
+        'leer', 'lectura', 'bibliografia', 'editorial', 'publicacion', 'obra',
+        'personaje', 'trama', 'historia', 'genero', 'ficcion', 'ensayo',
+        'trata', 'escribio', 'escribió', 'recomenda', 'similar', 'parecido'
+    ]
+    return any(t in texto_norm for t in temas_validos)
+
+def detectar_pedido_catalogo(consulta, df):
+    """Detecta si el usuario pide ver libros de un género/tema y retorna los resultados"""
+    if df is None:
+        return None, None
+    consulta_norm = normalizar(consulta)
+    
+    # Palabras que indican pedido de listado
+    triggers = ['mostrame', 'mostrar', 'ver libros', 'libros de', 'libros sobre',
+                'que libros', 'qué libros', 'hay libros', 'tenes libros',
+                'tienen libros', 'lista de', 'listado', 'todos los libros']
+    
+    es_pedido_lista = any(t in consulta_norm for t in triggers)
+    if not es_pedido_lista:
+        return None, None
+    
+    # Buscar coincidencia con algún tema/género de la BD
+    if 'Temas' not in df.columns:
+        return None, None
+    
+    temas_bd = df['Temas'].dropna().unique()
+    for tema in temas_bd:
+        if normalizar(str(tema)) in consulta_norm:
+            resultados_tema = df[df['Temas'].apply(lambda x: normalizar(str(x))) == normalizar(str(tema))]
+            return tema, resultados_tema
+    
+    # Si no matchea exacto, buscar por palabras
+    for tema in temas_bd:
+        palabras_tema = normalizar(str(tema)).split()
+        for palabra in palabras_tema:
+            if len(palabra) > 3 and palabra in consulta_norm:
+                resultados_tema = df[df['Temas'].apply(lambda x: normalizar(str(x))) == normalizar(str(tema))]
+                return tema, resultados_tema
+    
+    return None, None
+
+def cargar_reservas():
+    ruta = "data/reservas.json"
+    if os.path.exists(ruta):
+        try:
+            with open(ruta, 'r', encoding='utf-8') as f:
+                contenido = f.read().strip()
+                if not contenido:
+                    return []
+                return json.loads(contenido)
+        except:
+            return []
+    return []
+
+def obtener_disponibilidad(titulo, df):
+    """Retorna (ejemplares_totales, ejemplares_disponibles)"""
+    if df is None:
+        return 0, 0
+    
+    fila = df[df['Titulo'].apply(lambda x: normalizar(str(x))) == normalizar(titulo)]
+    if fila.empty:
+        return 0, 0
+    
+    total = int(fila.iloc[0]['Ejemplares'])
+    
+    # Contar reservas activas (pendiente o entregado) para ese libro
+    reservas = cargar_reservas()
+    activas = sum(1 for r in reservas 
+                  if normalizar(r['titulo']) == normalizar(titulo) 
+                  and r['estado'] in ['pendiente', 'entregado'])
+    
+    disponibles = max(0, total - activas)
+    return total, disponibles
+
+def guardar_reserva(nombre, dni, titulo, autor):
+    ruta = "data/reservas.json"
+    reservas = cargar_reservas()
+    reserva = {
+        "id": len(reservas) + 1,
+        "fecha": datetime.now().isoformat(),
+        "nombre": nombre,
+        "dni": dni,
+        "titulo": titulo,
+        "autor": autor,
+        "estado": "pendiente"
+    }
+    reservas.append(reserva)
+    os.makedirs("data", exist_ok=True)
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(reservas, f, ensure_ascii=False, indent=2)
+    return reserva
+
+def actualizar_estado_reserva(id_reserva, nuevo_estado):
+    ruta = "data/reservas.json"
+    reservas = cargar_reservas()
+    for r in reservas:
+        if r['id'] == id_reserva:
+            r['estado'] = nuevo_estado
+            r[f'fecha_{nuevo_estado}'] = datetime.now().isoformat()
+            break
+    with open(ruta, 'w', encoding='utf-8') as f:
+        json.dump(reservas, f, ensure_ascii=False, indent=2)
+
+def mostrar_sistema_reservas(df):
+    st.markdown("---")
+    st.markdown("### 📋 Reservar un libro")
+    
+    with st.expander("📝 Hacer una reserva", expanded=False):
+        col1, col2 = st.columns(2)
+        with col1:
+            nombre = st.text_input("Tu nombre completo", key="reserva_nombre")
+        with col2:
+            dni = st.text_input("DNI", key="reserva_dni")
+        
+        # Selector de libro desde la BD
+        if df is not None:
+            opciones = [f"{row['Titulo']} — {row['Autor']}" for _, row in df.iterrows()]
+            libro_seleccionado = st.selectbox("Seleccioná el libro", [""] + opciones, key="reserva_libro")
+        
+        if st.button("📤 Confirmar reserva", key="btn_reserva"):
+            if not nombre.strip():
+                st.warning("Ingresá tu nombre.")
+            elif not dni.strip():
+                st.warning("Ingresá tu DNI.")
+            elif not libro_seleccionado:
+                st.warning("Seleccioná un libro.")
+            else:
+                titulo = libro_seleccionado.split(" — ")[0]
+                autor = libro_seleccionado.split(" — ")[1]
+                total, disponibles = obtener_disponibilidad(titulo, df)
+                if disponibles <= 0:
+                    st.error(f"❌ No hay ejemplares disponibles de **{titulo}** en este momento. Todos los ejemplares están reservados o prestados.")
+                else:
+                    reserva = guardar_reserva(nombre, dni, titulo, autor)
+                    st.success(f"✅ Reserva #{reserva['id']} confirmada para **{titulo}**. Quedán {disponibles - 1} ejemplar(es) disponibles. Acercate con tu DNI.")
+    
+    # Vista de reservas para el bibliotecario (protegida con contraseña simple)
+    with st.expander("🔐 Ver reservas (Bibliotecario)", expanded=False):
+        password = st.text_input("Contraseña", type="password", key="reservas_pass")
+        if password == st.secrets.get("ADMIN_PASSWORD", "biblioteca2026"):
+            reservas = cargar_reservas()
+            if not reservas:
+                st.info("No hay reservas todavía.")
+            else:
+                # Filtro por estado
+                estados_filtro = ["Todas", "pendiente", "entregado", "devuelto"]
+                filtro = st.selectbox("Filtrar por estado", estados_filtro, key="filtro_estado")
+                
+                reservas_filtradas = reservas if filtro == "Todas" else [r for r in reservas if r['estado'] == filtro]
+                
+                if not reservas_filtradas:
+                    st.info(f"No hay reservas con estado '{filtro}'.")
+                else:
+                    for r in reversed(reservas_filtradas):
+                        fecha = datetime.fromisoformat(r['fecha']).strftime('%d/%m %H:%M')
+                        
+                        # Color según estado
+                        color = {"pendiente": "#f0a500", "entregado": "#0066cc", "devuelto": "#00aa44"}.get(r['estado'], "#888")
+                        icono = {"pendiente": "⏳", "entregado": "📬", "devuelto": "✅"}.get(r['estado'], "❓")
+                        
+                        st.markdown(f"""
+                        <div style="background:#1e1e2e; border-left: 4px solid {color}; 
+                                    padding: 0.8rem; border-radius: 8px; margin: 0.5rem 0;">
+                            <strong style="color:{color};">{icono} #{r['id']} — {r['estado'].upper()}</strong><br>
+                            <span style="color:#e0e0e0;">📖 {r['titulo']}</span><br>
+                            <span style="color:#aaa;">👤 {r['nombre']} — DNI: {r['dni']}</span><br>
+                            <span style="color:#666; font-size:0.8rem;">🕐 {fecha}</span>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        col1, col2, col3 = st.columns([1, 1, 2])
+                        with col1:
+                            if r['estado'] == 'pendiente':
+                                if st.button("📬 Entregar", key=f"entregar_{r['id']}"):
+                                    actualizar_estado_reserva(r['id'], "entregado")
+                                    st.success(f"Marcado como entregado.")
+                                    st.rerun()
+                        with col2:
+                            if r['estado'] == 'entregado':
+                                if st.button("✅ Devuelto", key=f"devuelto_{r['id']}"):
+                                    actualizar_estado_reserva(r['id'], "devuelto")
+                                    st.success(f"Marcado como devuelto.")
+                                    st.rerun()
+                
+                st.markdown("---")
+                if st.button("📥 Exportar reservas", key="export_reservas"):
+                    st.download_button(
+                        "Descargar JSON",
+                        data=json.dumps(reservas, ensure_ascii=False, indent=2),
+                        file_name=f"reservas_{datetime.now().strftime('%Y%m%d')}.json",
+                        mime="application/json",
+                        key="dl_reservas"
+                    )
+        elif password:
+            st.error("Contraseña incorrecta.")
+
+
+
+
+
 
 # ==========================================
 # INTERFAZ PRINCIPAL
@@ -1329,6 +1557,8 @@ def main():
 
     if 'libros_vistos' not in st.session_state:
         st.session_state.libros_vistos = []
+
+    avatar_bot = obtener_avatar_bot()
 
     # Mostrar título con logo integrado
     mostrar_titulo_con_logo()
@@ -1410,17 +1640,18 @@ def main():
         return
     
     # Catálogo con paginación
-    with st.expander("📚 Ver catálogo completo", expanded=False):
+    with st.expander("📚 Ver catálogo completo y seccion de reservas", expanded=False):
         mostrar_catalogo_paginado(df, items_por_pagina=15)
+        mostrar_sistema_reservas(df)
 
     for msg in st.session_state.mensajes:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
             
     if 'ultimos_resultados' in st.session_state and st.session_state.ultimos_resultados:
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar=avatar_bot):
             st.markdown("### 📚 Resultados encontrados:")
-            mostrar_resultados_paginados(st.session_state.ultimos_resultados, items_por_pagina=6)
+            mostrar_resultados_paginados(st.session_state.ultimos_resultados, items_por_pagina=6, df=df)
 
     if 'ultimo_feedback_data' in st.session_state and st.session_state.ultimo_feedback_data:
         fb = st.session_state.ultimo_feedback_data
@@ -1442,10 +1673,32 @@ def main():
             st.write(consulta)
         
         if es_mensaje_conversacional(consulta):
-            with st.chat_message("assistant"):
+            with st.chat_message("assistant", avatar=avatar_bot):
                 respuesta = obtener_respuesta_groq(consulta, [], df, st.session_state.mensajes[:-1], st.session_state.libros_vistos, modo="conversacional")
                 st.session_state.mensajes.append({"role": "assistant", "content": respuesta})
                 st.info(respuesta)
+
+        # ── pedido de catálogo por género (paginado) ──────────────────
+        elif detectar_pedido_catalogo(consulta, df)[0] is not None:
+            tema, df_tema = detectar_pedido_catalogo(consulta, df)
+            with st.chat_message("assistant", avatar=avatar_bot):
+                st.success(f"📚 Libros de **{tema}** en el catálogo ({len(df_tema)} encontrados):")
+                
+                # Convertir df a formato de resultados para usar mostrar_resultados_paginados
+                resultados_tema = []
+                for _, row in df_tema.iterrows():
+                    resultados_tema.append({'puntaje': 100, 'datos': row})
+                
+                st.session_state.ultimos_resultados = resultados_tema
+                st.session_state.pagina_resultados = 0
+                mostrar_resultados_paginados(resultados_tema, items_por_pagina=6, df=df)
+                
+                respuesta = f"Te muestro los {len(df_tema)} libros de {tema} disponibles en la biblioteca."
+                st.session_state.mensajes.append({"role": "assistant", "content": respuesta})
+                st.session_state.ultimo_feedback_data = {
+                    "consulta": consulta, "termino": consulta,
+                    "resultados_count": len(df_tema), "respuesta": respuesta
+                }
 
         else:
             with st.spinner("🔍 Buscando en la biblioteca..."):
@@ -1470,7 +1723,7 @@ def main():
                     ip_info=ip_info
                 )
         
-            with st.chat_message("assistant"):
+            with st.chat_message("assistant", avatar=avatar_bot):
                 if resultados:
                     st.success("✅ **Encontrado en el catálogo de la biblioteca**")
                     with st.spinner("💭 Generando respuesta..."):
@@ -1489,7 +1742,6 @@ def main():
                     st.markdown("### 💬 Respuesta del bibliotecario:")
                     st.info(f"📖 {respuesta}")
                     st.caption("✨ Este libro está disponible en el catálogo de esta biblioteca.")
-                    mostrar_botones_feedback(consulta, consulta, len(resultados), respuesta)
 
                 else:
                     # Verificar si el libro aparece en el contexto de la conversación
@@ -1509,14 +1761,17 @@ def main():
                     else:
                         # No está en la BD, usa conocimiento general
                         st.warning("📚 **No encontrado en el catálogo** — respondiendo con conocimiento general")
-                        with st.spinner("💭 Generando respuesta..."):
-                            respuesta = obtener_respuesta_groq(
-                                consulta, [], df,
-                                st.session_state.mensajes[:-1],
-                                st.session_state.libros_vistos,
-                                modo="general"
-                            )
-                        st.caption("💡 Esta información es general. El material **no está disponible** en el catálogo.")
+                        if es_consulta_sobre_libros(consulta):
+                            with st.spinner("💭 Generando respuesta..."):
+                                respuesta = obtener_respuesta_groq(
+                                    consulta, [], df,
+                                    st.session_state.mensajes[:-1],
+                                    st.session_state.libros_vistos,
+                                    modo="general"
+                                )
+                            st.caption("💡 Esta información es general. El material **no está disponible** en el catálogo.")
+                        else:
+                            respuesta = "Lo siento, solo puedo ayudarte con consultas sobre libros, autores y literatura. ¿Querés buscar algún libro en el catálogo? 📚"
 
                     st.session_state.mensajes.append({"role": "assistant", "content": respuesta})
                     st.session_state.ultimo_feedback_data = {
@@ -1526,7 +1781,6 @@ def main():
                     st.markdown("---")
                     st.markdown("### 💬 Respuesta del bibliotecario:")
                     st.info(respuesta)
-                    mostrar_botones_feedback(consulta, consulta, 0, respuesta)
     
     # Mostrar footer
     mostrar_footer()
