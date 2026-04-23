@@ -672,6 +672,15 @@ def obtener_avatar_bot():
                 return f.read()
     return "📚"  # fallback si no hay imagen
 
+def obtener_avatar_user():
+    """Retorna el avatar del usuario o emoji de fallback"""
+    rutas = ["images/avatar_user.png", "images/avatar_user.jpg"]
+    for ruta in rutas:
+        if os.path.exists(ruta):
+            with open(ruta, "rb") as f:
+                return f.read()
+    return "👤"
+
 def mostrar_titulo_con_logo():
     """Muestra el título con el logo integrado"""
     ruta_logo, img = cargar_logo()
@@ -1188,7 +1197,27 @@ def mostrar_catalogo_paginado(df, items_por_pagina=15):
     df_pagina['Titulo'] = df_pagina['Titulo'].astype(str)
     df_pagina['Autor'] = df_pagina['Autor'].astype(str)
     df_pagina['Temas'] = df_pagina['Temas'].astype(str)
-    st.dataframe(df_pagina, width='stretch')
+
+    # Calcular disponibles en tiempo real
+    reservas_activas = cargar_reservas()
+    def calc_disponibles(titulo):
+        activas = sum(1 for r in reservas_activas
+                      if normalizar(r['titulo']) == normalizar(str(titulo))
+                      and r['estado'] in ['pendiente', 'entregado'])
+        total = int(df[df['Titulo'].apply(lambda x: normalizar(str(x))) == normalizar(str(titulo))].iloc[0]['Ejemplares'])
+        return max(0, total - activas)
+
+    df_pagina['Disponibles'] = df_pagina['Titulo'].apply(calc_disponibles)
+    df_pagina = df_pagina.rename(columns={'Ejemplares': 'Total'})
+    df_pagina = df_pagina[['Id', 'Titulo', 'Autor', 'Año', 'Total', 'Disponibles', 'Temas']]
+
+    st.dataframe(
+        df_pagina.style.map(
+            lambda v: 'color: #ff4444' if v == 0 else 'color: #00ff9d',
+            subset=['Disponibles']
+        ),
+        width='stretch'
+    )
     
     # Controles de paginación
     if total_paginas > 1:
@@ -1559,6 +1588,7 @@ def main():
         st.session_state.libros_vistos = []
 
     avatar_bot = obtener_avatar_bot()
+    avatar_user = obtener_avatar_user()
 
     # Mostrar título con logo integrado
     mostrar_titulo_con_logo()
@@ -1645,7 +1675,8 @@ def main():
         mostrar_sistema_reservas(df)
 
     for msg in st.session_state.mensajes:
-        with st.chat_message(msg["role"]):
+        av = avatar_bot if msg["role"] == "assistant" else avatar_user
+        with st.chat_message(msg["role"], avatar=av):
             st.write(msg["content"])
             
     if 'ultimos_resultados' in st.session_state and st.session_state.ultimos_resultados:
@@ -1669,7 +1700,7 @@ def main():
     
     if consulta:
         st.session_state.mensajes.append({"role": "user", "content": consulta})
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar=avatar_user):
             st.write(consulta)
         
         if es_mensaje_conversacional(consulta):

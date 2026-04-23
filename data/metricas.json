@@ -1,14 +1,14 @@
 {
-  "consultas_totales": 37,
+  "consultas_totales": 39,
   "consultas_por_dia": {
     "2026-04-22": 15,
-    "2026-04-23": 22
+    "2026-04-23": 24
   },
   "paises_acceso": {
-    "Argentina": 21
+    "Argentina": 23
   },
   "ciudades_acceso": {
-    "Castelar": 16,
+    "Castelar": 18,
     "Moron": 1,
     "Morón": 4
   },
@@ -197,9 +197,19 @@
       "termino": "como puedo hacer una reserva",
       "fecha": "2026-04-23T10:40:54.796567",
       "resultados": true
+    },
+    {
+      "termino": "hablame del quijote",
+      "fecha": "2026-04-23T14:27:49.026489",
+      "resultados": true
+    },
+    {
+      "termino": "me podes hablar mas del libro?",
+      "fecha": "2026-04-23T14:28:19.804599",
+      "resultados": true
     }
   ],
-  "consultas_con_resultados": 30,
+  "consultas_con_resultados": 32,
   "consultas_sin_resultados": 7,
   "ultimas_consultas": [],
   "sesiones": {
@@ -267,6 +277,11 @@
       "primera_visita": "2026-04-23T10:39:43.242169",
       "consultas": 3,
       "ultima_consulta": "2026-04-23T10:40:54.796567"
+    },
+    "1776965110240": {
+      "primera_visita": "2026-04-23T14:27:49.026489",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T14:28:19.804599"
     }
   }
 }

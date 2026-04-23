@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "fecha": "2026-04-23T14:19:58.366748",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "estado": "pendiente"
+  },
+  {
+    "id": 2,
+    "fecha": "2026-04-23T14:20:01.292859",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "estado": "pendiente"
+  },
+  {
+    "id": 3,
+    "fecha": "2026-04-23T14:20:02.144289",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "estado": "pendiente"
+  },
+  {
+    "id": 4,
+    "fecha": "2026-04-23T14:20:18.057971",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 5,
+    "fecha": "2026-04-23T14:20:18.955971",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 6,
+    "fecha": "2026-04-23T14:20:35.409272",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 7,
+    "fecha": "2026-04-23T14:20:36.481098",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 8,
+    "fecha": "2026-04-23T14:20:37.148758",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 9,
+    "fecha": "2026-04-23T14:20:37.566427",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 10,
+    "fecha": "2026-04-23T14:20:37.912996",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 11,
+    "fecha": "2026-04-23T14:20:38.501310",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 12,
+    "fecha": "2026-04-23T14:20:39.313300",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 13,
+    "fecha": "2026-04-23T14:20:43.576007",
+    "nombre": "ggg",
+    "dni": "5657",
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "estado": "pendiente"
+  },
+  {
+    "id": 14,
+    "fecha": "2026-04-23T14:21:13.736477",
+    "nombre": "55",
+    "dni": "55",
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "estado": "pendiente"
+  },
+  {
+    "id": 15,
+    "fecha": "2026-04-23T14:21:41.220291",
+    "nombre": "55",
+    "dni": "55",
+    "titulo": "La Odisea",
+    "autor": "Homero",
+    "estado": "pendiente"
+  },
+  {
+    "id": 16,
+    "fecha": "2026-04-23T14:21:55.210605",
+    "nombre": "55",
+    "dni": "55",
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "estado": "pendiente"
+  }
+]
