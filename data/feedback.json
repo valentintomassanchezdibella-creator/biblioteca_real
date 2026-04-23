@@ -1,0 +1,379 @@
+{
+  "total_feedback": 24,
+  "util": 9,
+  "no_util": 15,
+  "tasa_efectividad": 37.5,
+  "feedback_por_consulta": [
+    {
+      "fecha": "2026-04-17T21:55:52.286042",
+      "consulta": "odisea",
+      "termino_buscado": "odisea",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos disponible \"La Odisea\" de Homero, publicado en 1943, con un total de 7 ejemplares en nuestra biblioteca. Este libro pertenece al tema de Literatura. ¿Te gustaría saber más sobre este libro o deseas leerlo?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:15.287923",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:17.518763",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:20.156414",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:20.822422",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:21.648788",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": true,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:22.287204",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:25.646620",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:56:26.052421",
+      "consulta": "homero",
+      "termino_buscado": "homero",
+      "util": false,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Tenemos dos libros disponibles escritos por Homero:\n\n1. \"La Odisea\" (1943) - 7 ejemplares - Tema: Literatura\n2. \"La Ilíada\" (1943) - 6 ejemplares - Tema: Literatura\n\nAmbos libros pertenecen al tema de Literatura. ¿Te gustaría saber más sobre alguno de ellos o deseas leerlos?"
+    },
+    {
+      "fecha": "2026-04-17T21:57:37.126211",
+      "consulta": "odisea",
+      "termino_buscado": "odisea",
+      "util": false,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"La Odisea\" de Homero, publicado en 1943. Este libro pertenece al tema de Literatura y tenemos 7 ejemplares disponibles en la biblioteca. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-22T13:16:56.704696",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943. Este libro pertenece al tema de Literatura y tenemos 8 ejemplares disponibles. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-22T13:20:28.831585",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943. Este libro pertenece al tema de Literatura y tenemos 8 ejemplares disponibles. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-22T13:21:14.973414",
+      "consulta": "me gustaria saber mas de este libro",
+      "termino_buscado": "me gustaria saber mas de este libro",
+      "util": false,
+      "resultados_encontrados": 3,
+      "respuesta_generada": "Lo siento, pero no tengo información sobre un libro titulado \"Don Quijote de la Mancha\" en nuestra lista. Sin embargo, puedo ofrecerte información sobre los libros que tenemos disponibles en la biblioteca. \n\nTenemos tres libros en nuestra lista: \"El matadero\" de Esteban Echeverría, \"Operación masacr..."
+    },
+    {
+      "fecha": "2026-04-22T13:44:27.222545",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943. Este libro pertenece al tema de Literatura y tenemos 8 ejemplares disponibles. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-22T13:49:29.610929",
+      "consulta": "hola",
+      "termino_buscado": "hola",
+      "util": false,
+      "resultados_encontrados": 0,
+      "respuesta_generada": "No se encontraron libros en el catálogo para esta búsqueda."
+    },
+    {
+      "fecha": "2026-04-22T23:48:21.782091",
+      "consulta": "filosofia",
+      "termino_buscado": "filosofia",
+      "util": false,
+      "resultados_encontrados": 9,
+      "respuesta_generada": "Excelente elección. En nuestra biblioteca, tenemos una variedad de libros de filosofía que podrían interesarte. Algunas opciones son:\n\n* \"El mundo de Sofía\" de Jostein Gaarder\n* \"Homo Deus\" de Yuval Noah Harari\n* \"Ética para Amador\" de Fernando Savater\n* \"La República\" de Platón\n* \"El contrato socia..."
+    },
+    {
+      "fecha": "2026-04-22T23:49:54.966950",
+      "consulta": "si, me interesa",
+      "termino_buscado": "si, me interesa",
+      "util": false,
+      "resultados_encontrados": 0,
+      "respuesta_generada": "No se encontraron libros en el catálogo para esta búsqueda."
+    },
+    {
+      "fecha": "2026-04-22T23:57:02.368975",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": false,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943. Este libro pertenece al tema de Literatura y tenemos 8 ejemplares disponibles. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-23T00:14:46.167159",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "Tenemos un libro que coincide con tu búsqueda: \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943, con un tema de Literatura. Contamos con 8 ejemplares disponibles. ¿Te gustaría saber más sobre este libro o reservar uno de los ejemplares?"
+    },
+    {
+      "fecha": "2026-04-23T00:23:09.894695",
+      "consulta": "tienes don quijote?",
+      "termino_buscado": "tienes don quijote?",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "¡Sí! Tenemos \"Don Quijote de la Mancha\" de Miguel de Cervantes en nuestra biblioteca. De hecho, tenemos 8 ejemplares disponibles. Es un clásico de la literatura y uno de los libros más famosos de la historia. ¿Te gustaría leerlo? ¿Quieres que te muestre dónde está en la estantería?"
+    },
+    {
+      "fecha": "2026-04-23T00:23:47.224446",
+      "consulta": "Me gustaria leerlo, me podrias hacer una sintesis de que trata?",
+      "termino_buscado": "Me gustaria leerlo, me podrias hacer una sintesis de que trata?",
+      "util": false,
+      "resultados_encontrados": 4,
+      "respuesta_generada": "Lo siento, pero como bibliotecario, debo informarte que no tengo información sobre \"Don Quijote de la Mancha\" en nuestra base de datos actual. Sin embargo, puedo ofrecerte información sobre otros libros que tenemos disponibles.\n\nSi estás interesado en leer algo de literatura, podrías considerar \"Cró..."
+    },
+    {
+      "fecha": "2026-04-23T00:26:38.839576",
+      "consulta": "si, me gustaria saber mas de su trama",
+      "termino_buscado": "si, me gustaria saber mas de su trama",
+      "util": true,
+      "resultados_encontrados": 2,
+      "respuesta_generada": "Lo siento, pero como bibliotecario, debo informarte que no tengo acceso a información sobre \"Don Quijote de la Mancha\" en este momento. Sin embargo, puedo ofrecerte información sobre otros libros que tenemos disponibles en la biblioteca.\n\nSi estás interesado en leer algo de historia, podrías conside..."
+    },
+    {
+      "fecha": "2026-04-23T00:42:32.313459",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": true,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "¡Claro! Tenemos \"Don Quijote de la Mancha\" de Miguel de Cervantes, publicado en 1943. Es un clásico de la literatura y cuenta la historia de un noble español que se convierte en un caballero andante, inspirado por las historias de caballería que ha leído. La obra es considerada una de las más import..."
+    },
+    {
+      "fecha": "2026-04-23T00:50:16.568201",
+      "consulta": "tenes el quijote?",
+      "termino_buscado": "tenes el quijote?",
+      "util": false,
+      "resultados_encontrados": 0,
+      "respuesta_generada": "¡Claro! \"Don Quijote de la Mancha\" es una de las obras más famosas de la literatura española, escrita por Miguel de Cervantes Saavedra. Publicada en dos partes, en 1605 y 1615, es considerada una de las primeras novelas modernas de la literatura occidental.\n\nLa historia sigue las aventuras de Alonso..."
+    }
+  ],
+  "estadisticas_por_termino": {
+    "odisea": {
+      "util": 1,
+      "no_util": 1,
+      "total": 2
+    },
+    "homero": {
+      "util": 1,
+      "no_util": 7,
+      "total": 8
+    },
+    "quijote": {
+      "util": 5,
+      "no_util": 1,
+      "total": 6
+    },
+    "me gustaria saber mas de este libro": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "hola": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "filosofia": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "si, me interesa": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "tienes don quijote?": {
+      "util": 1,
+      "no_util": 0,
+      "total": 1
+    },
+    "Me gustaria leerlo, me podrias hacer una sintesis de que trata?": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "si, me gustaria saber mas de su trama": {
+      "util": 1,
+      "no_util": 0,
+      "total": 1
+    },
+    "tenes el quijote?": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    }
+  },
+  "ultimos_feedback": [
+    {
+      "fecha": "2026-04-17T21:55:52.286042",
+      "termino": "odisea",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-17T21:56:15.287923",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:17.518763",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:20.156414",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:20.822422",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:21.648788",
+      "termino": "homero",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-17T21:56:22.287204",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:25.646620",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:56:26.052421",
+      "termino": "homero",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-17T21:57:37.126211",
+      "termino": "odisea",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-22T13:16:56.704696",
+      "termino": "quijote",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-22T13:20:28.831585",
+      "termino": "quijote",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-22T13:21:14.973414",
+      "termino": "me gustaria saber mas de este libro",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-22T13:44:27.222545",
+      "termino": "quijote",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-22T13:49:29.610929",
+      "termino": "hola",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-22T23:48:21.782091",
+      "termino": "filosofia",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-22T23:49:54.966950",
+      "termino": "si, me interesa",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-22T23:57:02.368975",
+      "termino": "quijote",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-23T00:14:46.168159",
+      "termino": "quijote",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-23T00:23:09.894695",
+      "termino": "tienes don quijote?",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-23T00:23:47.224446",
+      "termino": "Me gustaria leerlo, me podrias hacer una sintesis de que trata?",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-23T00:26:38.839576",
+      "termino": "si, me gustaria saber mas de su trama",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-23T00:42:32.313459",
+      "termino": "quijote",
+      "util": true
+    },
+    {
+      "fecha": "2026-04-23T00:50:16.568201",
+      "termino": "tenes el quijote?",
+      "util": false
+    }
+  ]
+}

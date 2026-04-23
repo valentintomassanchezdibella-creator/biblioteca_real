@@ -1,0 +1,15 @@
+
+============================================================
+Fecha: 2026-04-22T23:57:27.360064
+Consulta original: quijote
+Término buscado: quijote
+Comentario: prueba
+============================================================
+
+============================================================
+Fecha: 2026-04-23T00:50:30.764381
+Consulta original: tenes el quijote?
+Término buscado: tenes el quijote?
+Comentario: si esta, pero figura que no
+
+============================================================
