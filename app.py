@@ -1819,6 +1819,7 @@ def main():
                     st.info(f"📖 {respuesta}")
                     st.caption("✨ Este libro está disponible en el catálogo de esta biblioteca.")
                     with st.chat_message("assistant", avatar=avatar_bot):
+                        st.markdown("### Si alguno de los resultados es incorrecto, puede buscar el libro en la tabla principal, o escribir el libro mas claro:")
                         st.markdown("### 📚 Resultados encontrados:")
                         mostrar_resultados_paginados(st.session_state.ultimos_resultados, items_por_pagina=6, df=df)
                 else:
