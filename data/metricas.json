@@ -1,128 +1,18 @@
 {
-  "consultas_totales": 39,
+  "consultas_totales": 122,
   "consultas_por_dia": {
     "2026-04-22": 15,
-    "2026-04-23": 24
+    "2026-04-23": 107
   },
   "paises_acceso": {
-    "Argentina": 23
+    "Argentina": 61
   },
   "ciudades_acceso": {
-    "Castelar": 18,
-    "Moron": 1,
+    "Castelar": 55,
+    "Moron": 2,
     "Morón": 4
   },
   "terminos_buscados": [
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T13:20:10.347561",
-      "resultados": true
-    },
-    {
-      "termino": "me gustaria saber mas de este libro",
-      "fecha": "2026-04-22T13:20:41.171885",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T13:21:29.710288",
-      "resultados": true
-    },
-    {
-      "termino": "si, me gustaria saber mas",
-      "fecha": "2026-04-22T13:21:46.710813",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T13:44:09.197791",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T13:44:42.325054",
-      "resultados": true
-    },
-    {
-      "termino": "hola",
-      "fecha": "2026-04-22T13:44:57.034316",
-      "resultados": false
-    },
-    {
-      "termino": "que podes hacer",
-      "fecha": "2026-04-22T23:47:10.965444",
-      "resultados": true
-    },
-    {
-      "termino": "filosofia",
-      "fecha": "2026-04-22T23:47:40.594548",
-      "resultados": true
-    },
-    {
-      "termino": "hablame de el principe",
-      "fecha": "2026-04-22T23:48:03.879525",
-      "resultados": true
-    },
-    {
-      "termino": "mostrame una lista de los libros",
-      "fecha": "2026-04-22T23:48:35.645315",
-      "resultados": true
-    },
-    {
-      "termino": "jean-jacques",
-      "fecha": "2026-04-22T23:49:13.057761",
-      "resultados": true
-    },
-    {
-      "termino": "si, me interesa",
-      "fecha": "2026-04-22T23:49:28.552830",
-      "resultados": false
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T23:50:53.321975",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-22T23:56:55.204279",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-23T00:14:38.629658",
-      "resultados": true
-    },
-    {
-      "termino": "me gustaria saber mas de este libro",
-      "fecha": "2026-04-23T00:15:09.806328",
-      "resultados": true
-    },
-    {
-      "termino": "tienes don quijote?",
-      "fecha": "2026-04-23T00:22:58.433162",
-      "resultados": true
-    },
-    {
-      "termino": "Me gustaria leerlo, me podrias hacer una sintesis de que trata?",
-      "fecha": "2026-04-23T00:23:33.239148",
-      "resultados": true
-    },
-    {
-      "termino": "de que trata don quijote",
-      "fecha": "2026-04-23T00:24:15.995191",
-      "resultados": true
-    },
-    {
-      "termino": "si, me gustaria saber mas de su trama",
-      "fecha": "2026-04-23T00:25:08.084518",
-      "resultados": true
-    },
-    {
-      "termino": "quijote",
-      "fecha": "2026-04-23T00:41:06.293575",
-      "resultados": true
-    },
     {
       "termino": "quijote",
       "fecha": "2026-04-23T00:42:23.476464",
@@ -207,10 +97,425 @@
       "termino": "me podes hablar mas del libro?",
       "fecha": "2026-04-23T14:28:19.804599",
       "resultados": true
+    },
+    {
+      "termino": "principito",
+      "fecha": "2026-04-23T20:13:20.226541",
+      "resultados": true
+    },
+    {
+      "termino": "me podes hablar un poco del libro?",
+      "fecha": "2026-04-23T20:13:54.973972",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:14:40.553149",
+      "resultados": true
+    },
+    {
+      "termino": "me gustaria saber mas de este libro",
+      "fecha": "2026-04-23T20:15:02.246914",
+      "resultados": true
+    },
+    {
+      "termino": ".",
+      "fecha": "2026-04-23T20:15:16.595069",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:26:10.175765",
+      "resultados": true
+    },
+    {
+      "termino": "me podrias hablar mas del libro y mostrarme su paginado",
+      "fecha": "2026-04-23T20:26:37.668783",
+      "resultados": true
+    },
+    {
+      "termino": ".",
+      "fecha": "2026-04-23T20:27:03.005363",
+      "resultados": true
+    },
+    {
+      "termino": "Don Quijote de la Mancha",
+      "fecha": "2026-04-23T20:27:24.214911",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T20:27:48.020845",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:29:32.504974",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:36:46.352306",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:37:40.464696",
+      "resultados": true
+    },
+    {
+      "termino": "tienes el quijote ?",
+      "fecha": "2026-04-23T20:44:07.900738",
+      "resultados": true
+    },
+    {
+      "termino": "me podes hablar mas del libro ?",
+      "fecha": "2026-04-23T20:44:35.860701",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T20:54:39.514639",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion sobre el libro",
+      "fecha": "2026-04-23T20:55:02.261264",
+      "resultados": true
+    },
+    {
+      "termino": "padre rico",
+      "fecha": "2026-04-23T20:58:42.304064",
+      "resultados": false
+    },
+    {
+      "termino": "Robert Kiyosaki",
+      "fecha": "2026-04-23T20:59:54.639914",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:05:45.460016",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T21:06:08.217186",
+      "resultados": true
+    },
+    {
+      "termino": "padre rico padre pobre",
+      "fecha": "2026-04-23T21:06:35.769633",
+      "resultados": false
+    },
+    {
+      "termino": "Robert Kiyosaki",
+      "fecha": "2026-04-23T21:07:21.705333",
+      "resultados": true
+    },
+    {
+      "termino": "QUIJOTE",
+      "fecha": "2026-04-23T21:11:44.821335",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T21:12:52.197953",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:13:40.544045",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del quijote",
+      "fecha": "2026-04-23T21:13:53.376194",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:22:49.756332",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion sobre el libro",
+      "fecha": "2026-04-23T21:23:02.520037",
+      "resultados": true
+    },
+    {
+      "termino": "if en_contexto:\n                        st.success(\"✅ **Este libro está en el catálogo de la biblioteca**\")\n                        # Usar resultados guardados si existen, para que el modelo\n                        # tenga los datos exactos del libro en el contexto\n                        resultados_contexto = st.session_state.resultados_actuales if st.session_state.resultados_actuales else []\n                        with st.spinner(\"💭 Consultando información...\"):\n                            respuesta = obtener_respuesta_groq(\n                                consulta, resultados_contexto, df,\n                                historial_para_groq,\n                                st.session_state.libros_vistos,\n                                modo=\"catalogo_general\"\n                            )",
+      "fecha": "2026-04-23T21:25:44.792275",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:26:12.112474",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T21:26:44.097369",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:33:03.413953",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T21:33:23.671923",
+      "resultados": true
+    },
+    {
+      "termino": "hablame del libro Padre rico, padre pobre escrito por Robert Kiyosaki",
+      "fecha": "2026-04-23T21:38:40.036648",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:40:30.285355",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del quijote",
+      "fecha": "2026-04-23T21:40:46.487514",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T21:42:12.930182",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T21:48:38.259658",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro que mencionaste",
+      "fecha": "2026-04-23T21:49:00.378028",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:04:43.550661",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro que mencionaste",
+      "fecha": "2026-04-23T22:05:01.389218",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:08:44.985011",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:09:42.348903",
+      "resultados": true
+    },
+    {
+      "termino": "padre rico",
+      "fecha": "2026-04-23T22:10:45.419046",
+      "resultados": false
+    },
+    {
+      "termino": "quijoter",
+      "fecha": "2026-04-23T22:12:25.316423",
+      "resultados": false
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:12:30.721956",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T22:12:57.485115",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:13:52.052518",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T22:14:06.901971",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del quijote",
+      "fecha": "2026-04-23T22:14:47.618050",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:15:37.168939",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:16:50.606488",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:17:36.490194",
+      "resultados": true
+    },
+    {
+      "termino": "me podrias dar mas informacion del libro ?",
+      "fecha": "2026-04-23T22:18:00.204404",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:18:43.595700",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro",
+      "fecha": "2026-04-23T22:18:55.175239",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:20:12.000830",
+      "resultados": true
+    },
+    {
+      "termino": "dame mas informacion del libro ",
+      "fecha": "2026-04-23T22:20:27.466338",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:30:39.016453",
+      "resultados": true
+    },
+    {
+      "termino": "literatura",
+      "fecha": "2026-04-23T22:31:32.669736",
+      "resultados": true
+    },
+    {
+      "termino": "busco el quijote",
+      "fecha": "2026-04-23T22:32:57.119622",
+      "resultados": true
+    },
+    {
+      "termino": "como puedo pedirte un libro",
+      "fecha": "2026-04-23T22:34:32.284859",
+      "resultados": false
+    },
+    {
+      "termino": "categorias de libros",
+      "fecha": "2026-04-23T22:35:04.296218",
+      "resultados": false
+    },
+    {
+      "termino": "literatura",
+      "fecha": "2026-04-23T22:35:19.976991",
+      "resultados": true
+    },
+    {
+      "termino": "categorias de libros",
+      "fecha": "2026-04-23T22:36:49.428706",
+      "resultados": false
+    },
+    {
+      "termino": "sexo",
+      "fecha": "2026-04-23T22:37:22.524730",
+      "resultados": false
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:38:04.760215",
+      "resultados": true
+    },
+    {
+      "termino": "tipos de libros",
+      "fecha": "2026-04-23T22:38:22.492318",
+      "resultados": false
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:45:40.300896",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:50:13.137081",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:51:21.896125",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:52:34.438724",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T22:52:59.048722",
+      "resultados": true
+    },
+    {
+      "termino": "temas de libros",
+      "fecha": "2026-04-23T22:53:16.457516",
+      "resultados": false
+    },
+    {
+      "termino": ".",
+      "fecha": "2026-04-23T22:53:35.528406",
+      "resultados": true
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T23:00:33.000622",
+      "resultados": true
+    },
+    {
+      "termino": "dame un beso de mandarina",
+      "fecha": "2026-04-23T23:01:05.634844",
+      "resultados": false
+    },
+    {
+      "termino": "padre rico, padre pobre",
+      "fecha": "2026-04-23T23:01:59.038716",
+      "resultados": false
+    },
+    {
+      "termino": "libro padre rico, padre pobre",
+      "fecha": "2026-04-23T23:03:22.244533",
+      "resultados": false
+    },
+    {
+      "termino": "libro sexo",
+      "fecha": "2026-04-23T23:04:05.652640",
+      "resultados": false
+    },
+    {
+      "termino": "quijote",
+      "fecha": "2026-04-23T23:07:57.043943",
+      "resultados": true
+    },
+    {
+      "termino": "libro padre rico, padre pobre",
+      "fecha": "2026-04-23T23:08:22.110612",
+      "resultados": false
     }
   ],
-  "consultas_con_resultados": 32,
-  "consultas_sin_resultados": 7,
+  "consultas_con_resultados": 100,
+  "consultas_sin_resultados": 22,
   "ultimas_consultas": [],
   "sesiones": {
     "1776874791273": {
@@ -282,6 +587,191 @@
       "primera_visita": "2026-04-23T14:27:49.026489",
       "consultas": 2,
       "ultima_consulta": "2026-04-23T14:28:19.804599"
+    },
+    "1776985991016": {
+      "primera_visita": "2026-04-23T20:13:20.226541",
+      "consultas": 5,
+      "ultima_consulta": "2026-04-23T20:15:16.595069"
+    },
+    "1776986740885": {
+      "primera_visita": "2026-04-23T20:26:10.175765",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T20:27:03.005363"
+    },
+    "1776986836061": {
+      "primera_visita": "2026-04-23T20:27:24.214911",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T20:29:32.504974"
+    },
+    "1776987396554": {
+      "primera_visita": "2026-04-23T20:36:46.352306",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T20:36:46.352306"
+    },
+    "1776987442678": {
+      "primera_visita": "2026-04-23T20:37:40.464696",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T20:37:40.464696"
+    },
+    "1776987828788": {
+      "primera_visita": "2026-04-23T20:44:07.900738",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T20:44:35.860701"
+    },
+    "1776988462264": {
+      "primera_visita": "2026-04-23T20:54:39.514639",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T20:55:02.261264"
+    },
+    "1776988712442": {
+      "primera_visita": "2026-04-23T20:58:42.304064",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T20:59:54.639914"
+    },
+    "1776989135357": {
+      "primera_visita": "2026-04-23T21:05:45.460016",
+      "consultas": 4,
+      "ultima_consulta": "2026-04-23T21:07:21.705333"
+    },
+    "1776989497634": {
+      "primera_visita": "2026-04-23T21:11:44.821335",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T21:12:52.197953"
+    },
+    "1776989609540": {
+      "primera_visita": "2026-04-23T21:13:40.544045",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T21:13:53.376194"
+    },
+    "1776990135139": {
+      "primera_visita": "2026-04-23T21:22:49.756332",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T21:23:02.520037"
+    },
+    "1776990334057": {
+      "primera_visita": "2026-04-23T21:25:44.792275",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T21:25:44.792275"
+    },
+    "1776990364998": {
+      "primera_visita": "2026-04-23T21:26:12.112474",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T21:26:44.097369"
+    },
+    "1776990776417": {
+      "primera_visita": "2026-04-23T21:33:03.413953",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T21:38:40.036648"
+    },
+    "1776991220158": {
+      "primera_visita": "2026-04-23T21:40:30.285355",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T21:42:12.930182"
+    },
+    "1776991709018": {
+      "primera_visita": "2026-04-23T21:48:38.259658",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T21:49:00.378028"
+    },
+    "1776992669146": {
+      "primera_visita": "2026-04-23T22:04:43.550661",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:05:01.389218"
+    },
+    "1776992906320": {
+      "primera_visita": "2026-04-23T22:08:44.985011",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:08:44.985011"
+    },
+    "1776992956021": {
+      "primera_visita": "2026-04-23T22:09:42.348903",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:10:45.420044"
+    },
+    "1776993132115": {
+      "primera_visita": "2026-04-23T22:12:25.316423",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T22:12:57.485115"
+    },
+    "1776993221568": {
+      "primera_visita": "2026-04-23T22:13:52.052518",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T22:14:47.618050"
+    },
+    "1776993328611": {
+      "primera_visita": "2026-04-23T22:15:37.169939",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:15:37.169939"
+    },
+    "1776993402106": {
+      "primera_visita": "2026-04-23T22:16:50.607487",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:16:50.607487"
+    },
+    "1776993448917": {
+      "primera_visita": "2026-04-23T22:17:36.490194",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:18:00.204404"
+    },
+    "1776993516414": {
+      "primera_visita": "2026-04-23T22:18:43.595700",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:18:55.175239"
+    },
+    "1776993599180": {
+      "primera_visita": "2026-04-23T22:20:12.000830",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:20:27.466338"
+    },
+    "1776994227562": {
+      "primera_visita": "2026-04-23T22:30:39.016453",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T22:31:32.669736"
+    },
+    "1776994322800": {
+      "primera_visita": "2026-04-23T22:32:57.119622",
+      "consultas": 4,
+      "ultima_consulta": "2026-04-23T22:35:19.976991"
+    },
+    "1776994596976": {
+      "primera_visita": "2026-04-23T22:36:49.428706",
+      "consultas": 4,
+      "ultima_consulta": "2026-04-23T22:38:22.492318"
+    },
+    "1776995131602": {
+      "primera_visita": "2026-04-23T22:45:40.300896",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:45:40.300896"
+    },
+    "1776995403028": {
+      "primera_visita": "2026-04-23T22:50:13.137081",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:50:13.137081"
+    },
+    "1776995476814": {
+      "primera_visita": "2026-04-23T22:51:21.896125",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:51:21.897125"
+    },
+    "1776995542083": {
+      "primera_visita": "2026-04-23T22:52:34.438724",
+      "consultas": 1,
+      "ultima_consulta": "2026-04-23T22:52:34.438724"
+    },
+    "1776995568543": {
+      "primera_visita": "2026-04-23T22:52:59.048722",
+      "consultas": 3,
+      "ultima_consulta": "2026-04-23T22:53:35.528406"
+    },
+    "1776996012951": {
+      "primera_visita": "2026-04-23T23:00:33.000622",
+      "consultas": 5,
+      "ultima_consulta": "2026-04-23T23:04:05.652640"
+    },
+    "1776996468795": {
+      "primera_visita": "2026-04-23T23:07:57.043943",
+      "consultas": 2,
+      "ultima_consulta": "2026-04-23T23:08:22.110612"
     }
   }
 }

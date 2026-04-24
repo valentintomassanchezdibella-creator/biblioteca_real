@@ -13,3 +13,10 @@ Término buscado: tenes el quijote?
 Comentario: si esta, pero figura que no
 
 ============================================================
+
+============================================================
+Fecha: 2026-04-23T20:38:03.239395
+Consulta original: quijote
+Término buscado: quijote
+Comentario: prueba
+============================================================

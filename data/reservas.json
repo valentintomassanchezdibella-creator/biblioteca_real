@@ -142,5 +142,32 @@
     "titulo": "Don Quijote de la Mancha",
     "autor": "Miguel de Cervantes",
     "estado": "pendiente"
+  },
+  {
+    "id": 17,
+    "fecha": "2026-04-23T20:25:57.946879",
+    "nombre": "hh",
+    "dni": "66",
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "estado": "pendiente"
+  },
+  {
+    "id": 18,
+    "fecha": "2026-04-23T20:30:02.273026",
+    "nombre": "jj",
+    "dni": "6787",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "estado": "pendiente"
+  },
+  {
+    "id": 19,
+    "fecha": "2026-04-23T23:09:14.300432",
+    "nombre": "hhh",
+    "dni": "78798",
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "estado": "pendiente"
   }
 ]

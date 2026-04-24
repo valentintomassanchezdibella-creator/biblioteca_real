@@ -1193,7 +1193,7 @@ def mostrar_catalogo_paginado(df, items_por_pagina=15):
     
     # Mostrar dataframe paginado
     st.markdown(f"**Mostrando {inicio + 1} - {fin} de {total_libros} libros**")
-    df_pagina = df[['Id', 'Titulo', 'Autor', 'Año', 'Ejemplares', 'Temas']].iloc[inicio:fin].copy()
+    df_pagina = df[['Id', 'Titulo', 'Autor', 'Año', 'Ejemplares', 'Temas', 'Ideas principales']].iloc[inicio:fin].copy()
     df_pagina['Titulo'] = df_pagina['Titulo'].astype(str)
     df_pagina['Autor'] = df_pagina['Autor'].astype(str)
     df_pagina['Temas'] = df_pagina['Temas'].astype(str)
@@ -1209,7 +1209,7 @@ def mostrar_catalogo_paginado(df, items_por_pagina=15):
 
     df_pagina['Disponibles'] = df_pagina['Titulo'].apply(calc_disponibles)
     df_pagina = df_pagina.rename(columns={'Ejemplares': 'Total'})
-    df_pagina = df_pagina[['Id', 'Titulo', 'Autor', 'Año', 'Total', 'Disponibles', 'Temas']]
+    df_pagina = df_pagina[['Id', 'Titulo', 'Autor', 'Año', 'Total', 'Disponibles', 'Temas', 'Ideas principales']]
 
     st.dataframe(
         df_pagina.style.map(
@@ -1256,42 +1256,54 @@ def obtener_respuesta_groq(consulta, resultados, df, historial=None, libros_vist
                 "Sos Biblio, un bibliotecario amigable de una biblioteca escolar. "
                 "Respondé de forma cálida y breve a saludos y charla general. "
                 "Recordá que tu especialidad es ayudar a encontrar libros en el catálogo."
-                + ("\n\nLIBROS QUE YA VIMOS EN ESTA CONVERSACIÓN:\n" + "\n".join(libros_vistos) if libros_vistos else "")
             )
 
         # ── MODO GENERAL (no está en la BD, usa conocimiento propio) ──
         elif modo == "general":
             system_content = (
                 "Sos Biblio, un bibliotecario amigable y culto. "
-                "Respondé con tu conocimiento general sobre el libro, autor o tema que pregunta el usuario. "
-                "Podés hablar de qué trata, quién lo escribió, por qué es importante, etc. "
-                "IMPORTANTE: Al final de tu respuesta siempre aclará: "
-                "'⚠️ Este material no figura en el catálogo de esta biblioteca.' "
-                "No inventes disponibilidad ni ejemplares."
-                + ("\n\nLIBROS DEL CATÁLOGO QUE VIMOS ANTES:\n" + "\n".join(libros_vistos) if libros_vistos else "")
+                "REGLAS ABSOLUTAS:\n"
+                "1. Hablá SOLO del libro o tema que pregunta el usuario.\n"
+                "2. NUNCA recomiendes otros libros ni menciones títulos adicionales.\n"
+                "3. Podés hablar de qué trata, quién lo escribió, por qué es importante, en qué época fue escrito.\n"
+                "4. Al final de tu respuesta, siempre agregá exactamente esta frase: "
+                "'⚠️ Este material no figura en el catálogo de esta biblioteca.'\n"
+                "5. No inventes disponibilidad ni ejemplares."
             )
 
         # ── MODO CATÁLOGO+GENERAL (está en la BD y el usuario pregunta más) ──
         elif modo == "catalogo_general":
-            # Calcular disponibilidad para cada libro encontrado
+            libros_lista = []
             info_disponibilidad = []
-            for r in resultados:
-                datos = r['datos']
-                titulo = str(datos['Titulo'])
+
+            if resultados:
                 reservas_activas = cargar_reservas()
-                activas = sum(1 for res in reservas_activas 
-                             if normalizar(res['titulo']) == normalizar(titulo) 
-                             and res['estado'] in ['pendiente', 'entregado'])
-                total = int(datos['Ejemplares'])
-                disp = max(0, total - activas)
-                info_disponibilidad.append(f"• {titulo}: {disp}/{total} disponibles")
-            
+                for r in resultados:
+                    datos = r['datos']
+                    titulo = str(datos['Titulo'])
+                    activas = sum(1 for res in reservas_activas
+                                 if normalizar(res['titulo']) == normalizar(titulo)
+                                 and res['estado'] in ['pendiente', 'entregado'])
+                    total = int(datos['Ejemplares'])
+                    disp = max(0, total - activas)
+                    libros_lista.append(
+                        f"Título: {titulo}\n"
+                        f"Autor: {datos['Autor']}\n"
+                        f"Año: {datos['Año']}\n"
+                        f"Tema: {datos['Temas']}\n"
+                        f"Tema: {datos['Ideas principales']}\n"
+                        f"Ejemplares disponibles: {disp} de {total}"
+                    )
+                    info_disponibilidad.append(f"{titulo}: {disp}/{total} disponibles")
+
+
             system_content = (
-                "Sos Biblio, un bibliotecario amigable. "
-                "El usuario pregunta sobre un libro que SÍ está en el catálogo de esta biblioteca. "
-                "IMPORTANTE: Informá la disponibilidad real. Si hay 0 disponibles, avisá claramente "
-                "que no hay ejemplares en este momento aunque el libro existe en el catálogo.\n\n"
-                f"DISPONIBILIDAD ACTUAL:\n{chr(10).join(info_disponibilidad)}\n\n"
+                "Sos Biblio, un bibliotecario amigable y culto.\n"
+                "Tu tarea es responder sobre este libro usando tanto los datos de la ficha "
+                "como tu conocimiento general: de qué trata, por qué es importante, "
+                "en qué época fue escrito, por qué vale la pena leerlo, datos del autor, etc.\n"
+                "También informá los ejemplares disponibles si el usuario lo pregunta.\n"
+                "No menciones otros libros que no sean los de la ficha."
             )
 
         # ── MODO BÚSQUEDA ESTRICTO (resultados en la BD, consulta directa) ──
@@ -1302,14 +1314,13 @@ def obtener_respuesta_groq(consulta, resultados, df, historial=None, libros_vist
                 libros_lista.append(
                     f"• {datos['Titulo']} - Autor: {datos['Autor']} ({datos['Año']}) "
                     f"- {datos['Ejemplares']} ejemplares - Tema: {datos['Temas']}"
+                    f"- {datos['Ideas principales']} "
                 )
             system_content = (
                 "Sos Biblio, un bibliotecario de una biblioteca escolar. "
                 "SOLO podés mencionar libros que estén en esta lista del catálogo. "
                 "NUNCA inventes libros, autores ni disponibilidad. "
                 "Podés usar tu conocimiento para describir brevemente de qué trata cada libro encontrado.\n\n"
-                f"LIBROS DISPONIBLES EN LA BIBLIOTECA:\n{chr(10).join(libros_lista)}"
-                + ("\n\nLIBROS MENCIONADOS ANTES:\n" + "\n".join(libros_vistos) if libros_vistos else "")
             )
 
         completion = client.chat.completions.create(
@@ -1319,7 +1330,7 @@ def obtener_respuesta_groq(consulta, resultados, df, historial=None, libros_vist
                 *historial[-6:],
                 {"role": "user", "content": consulta}
             ],
-            temperature=0.1 if modo == "busqueda" else 0.5,
+            temperature=0.1 if modo in ("busqueda", "catalogo_general") else 0.5,
             max_tokens=350
         )
         return completion.choices[0].message.content
@@ -1335,20 +1346,35 @@ def libro_en_contexto(consulta, libros_vistos):
     if not libros_vistos:
         return False
     consulta_norm = normalizar(consulta)
-    for libro_str in libros_vistos:
-        # Extraer el título (está entre "• " y " - Autor:")
+    
+    # Frases que claramente son seguimiento
+    referencias_directas = [
+        'anterior', 'ese libro', 'el mismo', 'ese mismo', 'del que me hablaste',
+        'que me dijiste', 'mencionaste', 'el de antes', 'explicame mas',
+        'contame mas', 'mas informacion', 'que mas', 'algo mas', 'seguir',
+        'ese', 'este', 'de que trata', 'quien lo escribio', 'por que',
+        'me lo recomendas', 'es bueno', 'vale la pena', 'mas informacion'
+    ]
+    if any(ref in consulta_norm for ref in referencias_directas):
+        return True
+    
+    # Verificar si algún título está mencionado en la consulta
+    for libro in libros_vistos:
         try:
-            titulo = libro_str.split("• ")[1].split(" - Autor:")[0]
+            titulo = str(libro.get("titulo", ""))
             titulo_norm = normalizar(titulo)
-            # Si el título aparece en la consulta, o la consulta menciona "anterior", "ese", "mismo"
-            referencias = ['anterior', 'ese libro', 'el mismo', 'ese mismo', 'del que me hablaste',
-                          'que me dijiste', 'mencionaste', 'el de antes']
-            if titulo_norm in consulta_norm:
+
+            palabras_titulo = [
+                p for p in titulo_norm.split()
+                if len(p) > 3
+            ]
+
+            if any(p in consulta_norm for p in palabras_titulo):
                 return True
-            if any(ref in consulta_norm for ref in referencias):
-                return True
-        except:
+
+        except Exception:
             continue
+
     return False
 
 def es_mensaje_conversacional(texto):
@@ -1499,6 +1525,8 @@ def mostrar_sistema_reservas(df):
                 else:
                     reserva = guardar_reserva(nombre, dni, titulo, autor)
                     st.success(f"✅ Reserva #{reserva['id']} confirmada para **{titulo}**. Quedán {disponibles - 1} ejemplar(es) disponibles. Acercate con tu DNI.")
+                    time.sleep(1)
+                    st.rerun()
     
     # Vista de reservas para el bibliotecario (protegida con contraseña simple)
     with st.expander("🔐 Ver reservas (Bibliotecario)", expanded=False):
@@ -1587,6 +1615,13 @@ def main():
     if 'libros_vistos' not in st.session_state:
         st.session_state.libros_vistos = []
 
+    if 'resultados_actuales' not in st.session_state:
+        st.session_state.resultados_actuales = []    
+
+    if 'ultimo_libro_buscado' not in st.session_state:
+        st.session_state.ultimo_libro_buscado = ""
+
+    df = cargar_datos()
     avatar_bot = obtener_avatar_bot()
     avatar_user = obtener_avatar_user()
 
@@ -1619,8 +1654,6 @@ def main():
             st.rerun()
         
         st.markdown("---")
-        
-        df = cargar_datos()
         
         if df is not None:
             st.markdown("### 📊 Estadísticas")
@@ -1678,11 +1711,6 @@ def main():
         av = avatar_bot if msg["role"] == "assistant" else avatar_user
         with st.chat_message(msg["role"], avatar=av):
             st.write(msg["content"])
-            
-    if 'ultimos_resultados' in st.session_state and st.session_state.ultimos_resultados:
-        with st.chat_message("assistant", avatar=avatar_bot):
-            st.markdown("### 📚 Resultados encontrados:")
-            mostrar_resultados_paginados(st.session_state.ultimos_resultados, items_por_pagina=6, df=df)
 
     if 'ultimo_feedback_data' in st.session_state and st.session_state.ultimo_feedback_data:
         fb = st.session_state.ultimo_feedback_data
@@ -1732,37 +1760,54 @@ def main():
                 }
 
         else:
-            with st.spinner("🔍 Buscando en la biblioteca..."):
-                resultados = busqueda_exhaustiva(consulta, df)
-                st.session_state.ultimos_resultados = resultados
-                st.session_state.ultima_consulta = consulta
-                st.session_state.pagina_resultados = 0
+            # Detectar si es pregunta de seguimiento
+            es_seguimiento = (
+                libro_en_contexto(consulta, st.session_state.libros_vistos)
+            )
 
-                for r in resultados:
-                    datos = r['datos']
-                    libro_str = f"• {datos['Titulo']} - Autor: {datos['Autor']} ({datos['Año']}) - Tema: {datos['Temas']}"
-                    if libro_str not in st.session_state.libros_vistos:
-                        st.session_state.libros_vistos.append(libro_str)
-                st.session_state.libros_vistos = st.session_state.libros_vistos[-20:]
-                
-                # Registrar métrica
-                ip_info = obtener_informacion_ip()
-                metricas_sistema.registrar_consulta(
-                    termino=consulta,
-                    tuvo_resultados=len(resultados) > 0,
-                    session_id=st.session_state.session_id,
-                    ip_info=ip_info
-                )
-        
+            if es_seguimiento:
+                resultados = st.session_state.resultados_actuales if st.session_state.resultados_actuales else []
+                historial_para_groq = []
+                if resultados:
+                    st.session_state.ultimos_resultados = resultados
+                # Inyectar el título en la consulta para que el modelo sepa de qué libro hablar
+                if st.session_state.ultimo_libro_buscado:
+                    consulta = f"{consulta} (sobre el libro: {st.session_state.ultimo_libro_buscado})"
+            else:
+                historial_para_groq = st.session_state.mensajes[:-1]
+                with st.spinner("🔍 Buscando en la biblioteca..."):
+                    resultados = busqueda_exhaustiva(consulta, df)
+                    # Solo actualizar paginado si hay resultados nuevos reales
+                    if resultados:
+                        st.session_state.ultimos_resultados = resultados
+                        st.session_state.resultados_actuales = resultados
+                        st.session_state.pagina_resultados = 0
+                        st.session_state.ultimo_libro_buscado = str(resultados[0]['datos']['Titulo'])
+                    
+                    for r in resultados:
+                        datos = r['datos']
+                        libro_str = f"• {datos['Titulo']} - Autor: {datos['Autor']} ({datos['Año']}) - Tema: {datos['Temas']} - Ideas principales Tema: {datos['Ideas principales']}"
+                        if libro_str not in st.session_state.libros_vistos:
+                            st.session_state.libros_vistos.append(libro_str)
+                    st.session_state.libros_vistos = st.session_state.libros_vistos[-20:]
+
+                    ip_info = obtener_informacion_ip()
+                    metricas_sistema.registrar_consulta(
+                        termino=consulta,
+                        tuvo_resultados=len(resultados) > 0,
+                        session_id=st.session_state.session_id,
+                        ip_info=ip_info
+                    )
+
             with st.chat_message("assistant", avatar=avatar_bot):
                 if resultados:
                     st.success("✅ **Encontrado en el catálogo de la biblioteca**")
                     with st.spinner("💭 Generando respuesta..."):
                         respuesta = obtener_respuesta_groq(
                             consulta, resultados, df,
-                            st.session_state.mensajes[:-1],
+                            historial_para_groq,
                             st.session_state.libros_vistos,
-                            modo="catalogo_general"  # siempre enriquece con conocimiento propio
+                            modo="aaaa"
                         )
                     st.session_state.mensajes.append({"role": "assistant", "content": respuesta})
                     st.session_state.ultimo_feedback_data = {
@@ -1773,36 +1818,41 @@ def main():
                     st.markdown("### 💬 Respuesta del bibliotecario:")
                     st.info(f"📖 {respuesta}")
                     st.caption("✨ Este libro está disponible en el catálogo de esta biblioteca.")
-
+                    with st.chat_message("assistant", avatar=avatar_bot):
+                        st.markdown("### 📚 Resultados encontrados:")
+                        mostrar_resultados_paginados(st.session_state.ultimos_resultados, items_por_pagina=6, df=df)
                 else:
-                    # Verificar si el libro aparece en el contexto de la conversación
                     en_contexto = libro_en_contexto(consulta, st.session_state.libros_vistos)
 
                     if en_contexto:
-                        # El libro SÍ está en la BD (fue mencionado antes)
                         st.success("✅ **Este libro está en el catálogo de la biblioteca**")
+                        # Usar resultados guardados si existen, para que el modelo
+                        # tenga los datos exactos del libro en el contexto
+                        resultados_contexto = st.session_state.resultados_actuales if st.session_state.resultados_actuales else []
                         with st.spinner("💭 Consultando información..."):
                             respuesta = obtener_respuesta_groq(
-                                consulta, [], df,
-                                st.session_state.mensajes[:-1],
+                                consulta, resultados_contexto, df,
+                                historial_para_groq,
                                 st.session_state.libros_vistos,
                                 modo="catalogo_general"
                             )
+                        st.markdown("---")
+                        st.markdown("### 💬 Respuesta del bibliotecario:")
+                        st.info(f"📖 {respuesta}")
                         st.caption("✨ Este libro está disponible en el catálogo de esta biblioteca.")
                     else:
-                        # No está en la BD, usa conocimiento general
                         st.warning("📚 **No encontrado en el catálogo** — respondiendo con conocimiento general")
                         if es_consulta_sobre_libros(consulta):
                             with st.spinner("💭 Generando respuesta..."):
                                 respuesta = obtener_respuesta_groq(
                                     consulta, [], df,
-                                    st.session_state.mensajes[:-1],
+                                    historial_para_groq,
                                     st.session_state.libros_vistos,
                                     modo="general"
                                 )
                             st.caption("💡 Esta información es general. El material **no está disponible** en el catálogo.")
                         else:
-                            respuesta = "Lo siento, solo puedo ayudarte con consultas sobre libros, autores y literatura. ¿Querés buscar algún libro en el catálogo? 📚"
+                            respuesta = "Lo siento, solo puedo ayudarte con consultas sobre libros, autores y literatura, si escribiste un libro, aclaralo escribiendo libro antes del nombre. ¿Querés buscar algún libro en el catálogo? 📚"
 
                     st.session_state.mensajes.append({"role": "assistant", "content": respuesta})
                     st.session_state.ultimo_feedback_data = {
@@ -1812,7 +1862,7 @@ def main():
                     st.markdown("---")
                     st.markdown("### 💬 Respuesta del bibliotecario:")
                     st.info(respuesta)
-    
+
     # Mostrar footer
     mostrar_footer()
 

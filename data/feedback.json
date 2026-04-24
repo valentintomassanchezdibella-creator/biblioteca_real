@@ -1,8 +1,8 @@
 {
-  "total_feedback": 24,
+  "total_feedback": 26,
   "util": 9,
-  "no_util": 15,
-  "tasa_efectividad": 37.5,
+  "no_util": 17,
+  "tasa_efectividad": 34.61538461538461,
   "feedback_por_consulta": [
     {
       "fecha": "2026-04-17T21:55:52.286042",
@@ -195,6 +195,22 @@
       "util": false,
       "resultados_encontrados": 0,
       "respuesta_generada": "¡Claro! \"Don Quijote de la Mancha\" es una de las obras más famosas de la literatura española, escrita por Miguel de Cervantes Saavedra. Publicada en dos partes, en 1605 y 1615, es considerada una de las primeras novelas modernas de la literatura occidental.\n\nLa historia sigue las aventuras de Alonso..."
+    },
+    {
+      "fecha": "2026-04-23T20:37:52.480396",
+      "consulta": "quijote",
+      "termino_buscado": "quijote",
+      "util": false,
+      "resultados_encontrados": 1,
+      "respuesta_generada": "¡Hola! Me alegra que estés interesado en \"Don Quijote de la Mancha\". Este clásico de la literatura española es uno de los títulos más destacados de nuestra biblioteca.\n\nEn cuanto a la disponibilidad, te puedo informar que actualmente tenemos 5 ejemplares disponibles de un total de 8. Esto significa ..."
+    },
+    {
+      "fecha": "2026-04-23T20:45:36.824187",
+      "consulta": "me podes hablar mas del libro ?",
+      "termino_buscado": "me podes hablar mas del libro ?",
+      "util": false,
+      "resultados_encontrados": 4,
+      "respuesta_generada": "Lo siento, pero parece que me equivoqué anteriormente. No tengo información sobre \"Don Quijote de la Mancha\" en nuestro catálogo actual. Sin embargo, puedo hablar sobre los libros que sí tenemos disponibles.\n\nSi estás interesado en literatura clásica, podrías considerar \"La isla del tesoro\" de Rober..."
     }
   ],
   "estadisticas_por_termino": {
@@ -210,8 +226,8 @@
     },
     "quijote": {
       "util": 5,
-      "no_util": 1,
-      "total": 6
+      "no_util": 2,
+      "total": 7
     },
     "me gustaria saber mas de este libro": {
       "util": 0,
@@ -249,6 +265,11 @@
       "total": 1
     },
     "tenes el quijote?": {
+      "util": 0,
+      "no_util": 1,
+      "total": 1
+    },
+    "me podes hablar mas del libro ?": {
       "util": 0,
       "no_util": 1,
       "total": 1
@@ -373,6 +394,16 @@
     {
       "fecha": "2026-04-23T00:50:16.568201",
       "termino": "tenes el quijote?",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-23T20:37:52.480396",
+      "termino": "quijote",
+      "util": false
+    },
+    {
+      "fecha": "2026-04-23T20:45:36.824187",
+      "termino": "me podes hablar mas del libro ?",
       "util": false
     }
   ]
