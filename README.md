@@ -1,2 +1,0 @@
-# ChacaBotBiblioteca
-Prototipo Chacabot
